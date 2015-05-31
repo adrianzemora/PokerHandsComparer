@@ -18,14 +18,14 @@ namespace PokerHandsComparer
             cards = cards.OrderBy(card => Guid.NewGuid()).ToList();
         }
 
-        public Card GetCard()
+        public Card GetSingleCard()
         {
             Card topCard = cards[cards.Count - 1];
             cards.RemoveAt(cards.Count - 1);
             return topCard;
         }
 
-        public List<Card> GetAllCards()
+        public List<Card> GetCards()
         {
             return cards;
         }

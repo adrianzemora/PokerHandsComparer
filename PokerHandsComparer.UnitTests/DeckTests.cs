@@ -10,31 +10,31 @@ namespace PokerHandsComparer.UnitTests
         public void Shuffle_MixesTheCards()
         {
             var deck = new Deck();
-            List<Card> beforeShuffle = deck.GetAllCards();
+            List<Card> beforeShuffle = deck.GetCards();
 
             deck.Shuffle();
 
-            CollectionAssert.AreNotEqual(beforeShuffle, deck.GetAllCards());
+            CollectionAssert.AreNotEqual(beforeShuffle, deck.GetCards());
         }
 
         [TestMethod]
-        public void GetCard_ReturnTheCardFromTop()
+        public void GetSingleCard_ReturnTheCardFromTop()
         {
             var deck = new Deck();
-            var allCards = deck.GetAllCards();
+            var allCards = deck.GetCards();
             Card topCard = allCards[allCards.Count - 1];
 
-            Assert.AreEqual(topCard, deck.GetCard());
+            Assert.AreEqual(topCard, deck.GetSingleCard());
         }
 
         [TestMethod]
-        public void GetCard_RemovesCardFromDeck()
+        public void GetSingleCard_RemovesCardFromDeck()
         {
             var deck = new Deck();
 
-            var card = deck.GetCard();
+            var card = deck.GetSingleCard();
 
-            CollectionAssert.DoesNotContain(deck.GetAllCards(), card);
+            CollectionAssert.DoesNotContain(deck.GetCards(), card);
         }
     }
 }

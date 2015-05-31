@@ -54,6 +54,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Card.cs" />
+    <Compile Include="Hand.cs" />
+    <Compile Include="Rank.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Suit.cs" />
