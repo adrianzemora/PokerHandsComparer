@@ -3,12 +3,12 @@ namespace PokerHandsComparer
 {
     class Card
     {
-        public Value Value { get; set; }
+        public Rank Rank { get; set; }
         public Suit Suit { get; set; }
 
-        public Card(Value value, Suit suit)
+        public Card(Rank rank, Suit suit)
         {
-            Value = value;
+            Rank = rank;
             Suit = suit;
         }
     }

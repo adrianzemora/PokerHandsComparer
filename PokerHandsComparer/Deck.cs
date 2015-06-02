@@ -33,11 +33,11 @@ namespace PokerHandsComparer
         private void CreateDeck()
         {
             cards = new List<Card>();
-            foreach (Value cardValue in Enum.GetValues(typeof(Value)))
+            foreach (Rank rank in Enum.GetValues(typeof(Rank)))
             {
-                foreach (Suit cardSuit in Enum.GetValues(typeof(Suit)))
+                foreach (Suit suit in Enum.GetValues(typeof(Suit)))
                 {
-                    cards.Add(new Card(cardValue, cardSuit));
+                    cards.Add(new Card(rank, suit));
                 }
             }
         }

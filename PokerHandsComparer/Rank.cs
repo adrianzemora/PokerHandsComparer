@@ -1,16 +1,20 @@
+﻿
 namespace PokerHandsComparer
 {
     enum Rank
     {
-        RoyalFlush,
-        StraightFlush,
-        FourOfAKind,
-        FullHouse,
-        Flush,
-        Straight,
-        ThreeOfAKind,
-        TwoPairs,
-        Pair,
-        HighCard
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King,
+        Ace
     }
 }

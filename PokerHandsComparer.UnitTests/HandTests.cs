@@ -7,201 +7,201 @@ namespace PokerHandsComparer.UnitTests
     public class HandTests
     {
         [TestMethod]
-        public void GetRank_ReturnsRoyalFlush_WhenCardsAreConsecutiveWithSameSuitAndAllAreHigherThanNine()
+        public void GetCategoryRank_ReturnsRoyalFlush_WhenCardsAreConsecutiveWithSameSuitAndAllAreHigherThanNine()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Ten, Suit.Hearts),
-                    new Card(Value.Jack, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Hearts),
-                    new Card(Value.King, Suit.Hearts),
-                    new Card(Value.Ace, Suit.Hearts),
+                    new Card(Rank.Ten, Suit.Hearts),
+                    new Card(Rank.Jack, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Hearts),
+                    new Card(Rank.King, Suit.Hearts),
+                    new Card(Rank.Ace, Suit.Hearts),
                 }
             };
 
-            Assert.AreEqual(Rank.RoyalFlush, hand.GetRank());
+            Assert.AreEqual(CategoryRank.RoyalFlush, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsStraightFlush_WhenCardsAreConsecutiveWithSameSuitAndAtLeastOneIsLowerThanTen()
+        public void GetCategoryRank_ReturnsStraightFlush_WhenCardsAreConsecutiveWithSameSuitAndAtLeastOneIsLowerThanTen()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Nine, Suit.Hearts),
-                    new Card(Value.Ten, Suit.Hearts),
-                    new Card(Value.Jack, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Hearts),
-                    new Card(Value.King, Suit.Hearts),
+                    new Card(Rank.Nine, Suit.Hearts),
+                    new Card(Rank.Ten, Suit.Hearts),
+                    new Card(Rank.Jack, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Hearts),
+                    new Card(Rank.King, Suit.Hearts),
                 }
             };
 
-            Assert.AreEqual(Rank.StraightFlush, hand.GetRank());
+            Assert.AreEqual(CategoryRank.StraightFlush, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsFourOfAKind_WhenThereAreFourCardsWithTheSameValue()
+        public void GetCategoryRank_ReturnsFourOfAKind_WhenThereAreFourCardsWithTheSameValue()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Four, Suit.Clubs),
-                    new Card(Value.Four, Suit.Hearts),
-                    new Card(Value.Four, Suit.Diamonds),
-                    new Card(Value.Four, Suit.Spades),
-                    new Card(Value.Ten, Suit.Diamonds),
+                    new Card(Rank.Four, Suit.Clubs),
+                    new Card(Rank.Four, Suit.Hearts),
+                    new Card(Rank.Four, Suit.Diamonds),
+                    new Card(Rank.Four, Suit.Spades),
+                    new Card(Rank.Ten, Suit.Diamonds),
                 }
             };
 
-            Assert.AreEqual(Rank.FourOfAKind, hand.GetRank());
+            Assert.AreEqual(CategoryRank.FourOfAKind, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsFullHouse_WhenThereAreThreeCardsOfAKindAndTwoOfAnotherKind()
+        public void GetCategoryRank_ReturnsFullHouse_WhenThereAreThreeCardsOfAKindAndTwoOfAnotherKind()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Four, Suit.Clubs),
-                    new Card(Value.Four, Suit.Hearts),
-                    new Card(Value.Four, Suit.Diamonds),
-                    new Card(Value.Ten, Suit.Spades),
-                    new Card(Value.Ten, Suit.Diamonds),
+                    new Card(Rank.Four, Suit.Clubs),
+                    new Card(Rank.Four, Suit.Hearts),
+                    new Card(Rank.Four, Suit.Diamonds),
+                    new Card(Rank.Ten, Suit.Spades),
+                    new Card(Rank.Ten, Suit.Diamonds),
                 }
             };
 
-            Assert.AreEqual(Rank.FullHouse, hand.GetRank());
+            Assert.AreEqual(CategoryRank.FullHouse, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsFlush_WhenAllCardsHaveTheSameSuit()
+        public void GetCategoryRank_ReturnsFlush_WhenAllCardsHaveTheSameSuit()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Two, Suit.Clubs),
-                    new Card(Value.Six, Suit.Clubs),
-                    new Card(Value.Eight, Suit.Clubs),
-                    new Card(Value.Jack, Suit.Clubs),
-                    new Card(Value.Queen, Suit.Clubs),
+                    new Card(Rank.Two, Suit.Clubs),
+                    new Card(Rank.Six, Suit.Clubs),
+                    new Card(Rank.Eight, Suit.Clubs),
+                    new Card(Rank.Jack, Suit.Clubs),
+                    new Card(Rank.Queen, Suit.Clubs),
                 }
             };
 
-            Assert.AreEqual(Rank.Flush, hand.GetRank());
+            Assert.AreEqual(CategoryRank.Flush, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsStraight_WhenCardsAreFromTwoToFiveAndThereIsAlsoAnAce()
+        public void GetCategoryRank_ReturnsStraight_WhenCardsAreFromTwoToFiveAndThereIsAlsoAnAce()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Ace, Suit.Clubs),
-                    new Card(Value.Two, Suit.Clubs),
-                    new Card(Value.Three, Suit.Clubs),
-                    new Card(Value.Four, Suit.Diamonds),
-                    new Card(Value.Five, Suit.Hearts),
+                    new Card(Rank.Ace, Suit.Clubs),
+                    new Card(Rank.Two, Suit.Clubs),
+                    new Card(Rank.Three, Suit.Clubs),
+                    new Card(Rank.Four, Suit.Diamonds),
+                    new Card(Rank.Five, Suit.Hearts),
                 }
             };
 
-            Assert.AreEqual(Rank.Straight, hand.GetRank());
+            Assert.AreEqual(CategoryRank.Straight, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsStraight_WhenCardsAreConsecutive()
+        public void GetCategoryRank_ReturnsStraight_WhenCardsAreConsecutive()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Eight, Suit.Clubs),
-                    new Card(Value.Nine, Suit.Clubs),
-                    new Card(Value.Ten, Suit.Diamonds),
-                    new Card(Value.Jack, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Clubs),
+                    new Card(Rank.Eight, Suit.Clubs),
+                    new Card(Rank.Nine, Suit.Clubs),
+                    new Card(Rank.Ten, Suit.Diamonds),
+                    new Card(Rank.Jack, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Clubs),
                 }
             };
 
-            Assert.AreEqual(Rank.Straight, hand.GetRank());
+            Assert.AreEqual(CategoryRank.Straight, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsThreeOfAKind_WhenThereAreThreeCardsWithTheSameValue()
+        public void GetCategoryRank_ReturnsThreeOfAKind_WhenThereAreThreeCardsWithTheSameValue()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Seven, Suit.Clubs),
-                    new Card(Value.Seven, Suit.Hearts),
-                    new Card(Value.Seven, Suit.Diamonds),
-                    new Card(Value.Jack, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Hearts),
+                    new Card(Rank.Seven, Suit.Diamonds),
+                    new Card(Rank.Jack, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Clubs),
                 }
             };
 
-            Assert.AreEqual(Rank.ThreeOfAKind, hand.GetRank());
+            Assert.AreEqual(CategoryRank.ThreeOfAKind, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsTwoPairs_WhenThereAreTwoCardsWithSameValueAndAnotherTwoCardsWithAnotherValue()
+        public void GetCategoryRank_ReturnsTwoPairs_WhenThereAreTwoCardsWithSameValueAndAnotherTwoCardsWithAnotherValue()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Seven, Suit.Clubs),
-                    new Card(Value.Seven, Suit.Hearts),
-                    new Card(Value.Jack, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Diamonds),
-                    new Card(Value.Queen, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Hearts),
+                    new Card(Rank.Jack, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Diamonds),
+                    new Card(Rank.Queen, Suit.Clubs),
                 }
             };
 
-            Assert.AreEqual(Rank.TwoPairs, hand.GetRank());
+            Assert.AreEqual(CategoryRank.TwoPairs, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsPair_WhenThereAreTwoCardsWithTheSameValue()
+        public void GetCategoryRank_ReturnsPair_WhenThereAreTwoCardsWithTheSameValue()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Seven, Suit.Clubs),
-                    new Card(Value.Seven, Suit.Hearts),
-                    new Card(Value.Three, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Diamonds),
-                    new Card(Value.Ace, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Hearts),
+                    new Card(Rank.Three, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Diamonds),
+                    new Card(Rank.Ace, Suit.Clubs),
                 }
             };
 
-            Assert.AreEqual(Rank.Pair, hand.GetRank());
+            Assert.AreEqual(CategoryRank.Pair, hand.GetCategoryRank());
         }
 
         [TestMethod]
-        public void GetRank_ReturnsHighCard_IfTheCardsDoNotFormAHigherRank()
+        public void GetCategoryRank_ReturnsHighCard_IfTheCardsDoNotFormAHigherRank()
         {
             var hand = new Hand
             {
                 Cards = new List<Card>
                 {
-                    new Card(Value.Two, Suit.Clubs),
-                    new Card(Value.Seven, Suit.Hearts),
-                    new Card(Value.Three, Suit.Hearts),
-                    new Card(Value.Queen, Suit.Diamonds),
-                    new Card(Value.Ace, Suit.Clubs),
+                    new Card(Rank.Two, Suit.Clubs),
+                    new Card(Rank.Seven, Suit.Hearts),
+                    new Card(Rank.Three, Suit.Hearts),
+                    new Card(Rank.Queen, Suit.Diamonds),
+                    new Card(Rank.Ace, Suit.Clubs),
                 }
             };
 
-            Assert.AreEqual(Rank.HighCard, hand.GetRank());
+            Assert.AreEqual(CategoryRank.HighCard, hand.GetCategoryRank());
         }
     }
 }
