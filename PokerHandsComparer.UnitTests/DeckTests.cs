@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace PokerHandsComparer.UnitTests
 {
-    [TestClass]
-    public class DeckTests
+    class DeckTests
     {
-        [TestMethod]
-        public void Shuffle_MixesTheCards()
+        [Test]
+        void Shuffle_MixesTheCards()
         {
             var deck = new Deck();
             List<Card> beforeShuffle = deck.GetCards();
@@ -17,7 +16,7 @@ namespace PokerHandsComparer.UnitTests
             CollectionAssert.AreNotEqual(beforeShuffle, deck.GetCards());
         }
 
-        [TestMethod]
+        [Test]
         public void GetSingleCard_ReturnTheCardFromTop()
         {
             var deck = new Deck();
@@ -27,7 +26,7 @@ namespace PokerHandsComparer.UnitTests
             Assert.AreEqual(topCard, deck.GetSingleCard());
         }
 
-        [TestMethod]
+        [Test]
         public void GetSingleCard_RemovesCardFromDeck()
         {
             var deck = new Deck();

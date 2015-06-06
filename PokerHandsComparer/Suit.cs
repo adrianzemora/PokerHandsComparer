@@ -1,7 +1,7 @@
 ﻿
 namespace PokerHandsComparer
 {
-    enum Suit
+    public enum Suit
     {
         Hearts,
         Diamonds,

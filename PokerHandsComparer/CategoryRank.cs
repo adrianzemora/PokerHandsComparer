@@ -1,16 +1,15 @@
 namespace PokerHandsComparer
 {
-    enum CategoryRank
+    public enum CategoryRank
     {
-        RoyalFlush,
-        StraightFlush,
-        FourOfAKind,
-        FullHouse,
-        Flush,
-        Straight,
-        ThreeOfAKind,
-        TwoPairs,
+        HighCard,
         Pair,
-        HighCard
+        TwoPairs,
+        ThreeOfAKind,
+        Straight,
+        Flush,
+        FullHouse,
+        FourOfAKind,
+        StraightFlush
     }
 }

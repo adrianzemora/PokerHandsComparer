@@ -59,6 +59,7 @@
     <Compile Include="Rank.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Suit.cs" />
+    <Compile Include="Winner.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

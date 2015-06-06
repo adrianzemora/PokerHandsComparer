@@ -1,10 +1,10 @@
 ﻿
 namespace PokerHandsComparer
 {
-    class Card
+    public class Card
     {
-        public Rank Rank { get; set; }
-        public Suit Suit { get; set; }
+        public Rank Rank { get; private set; }
+        public Suit Suit { get; private set; }
 
         public Card(Rank rank, Suit suit)
         {

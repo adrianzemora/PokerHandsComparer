@@ -1,7 +1,7 @@
 ﻿
 namespace PokerHandsComparer
 {
-    enum Rank
+    public enum Rank
     {
         Two,
         Three,
