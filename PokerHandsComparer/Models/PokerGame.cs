@@ -10,7 +10,7 @@ namespace PokerHandsComparer.Models
         public PokerGame()
         {
             var deck = new Deck();
-            //deck.Shuffle();
+            deck.Shuffle();
 
             FirstHand = new Hand(new List<Card>
             {
