@@ -12,28 +12,25 @@ namespace PokerHandsComparer.Models
             var deck = new Deck();
             deck.Shuffle();
 
-            FirstHand = new Hand(new List<Card>
-            {
-                deck.GetSingleCard(),
-                deck.GetSingleCard(),
-                deck.GetSingleCard(),
-                deck.GetSingleCard(),
-                deck.GetSingleCard()
-            });
-
-            SecondHand = new Hand(new List<Card>
-            {
-                deck.GetSingleCard(),
-                deck.GetSingleCard(),
-                deck.GetSingleCard(),
-                deck.GetSingleCard(),
-                deck.GetSingleCard()
-            });
+            FirstHand = GetHand(deck);
+            SecondHand = GetHand(deck);
         }
 
         public Winner GetWinner()
         {
             return FirstHand.CompareWith(SecondHand);
+        }
+
+        private static Hand GetHand(Deck deck)
+        {
+            return new Hand(new List<Card>
+            {
+                deck.GetSingleCard(),
+                deck.GetSingleCard(),
+                deck.GetSingleCard(),
+                deck.GetSingleCard(),
+                deck.GetSingleCard()
+            });
         }
     }
 }
