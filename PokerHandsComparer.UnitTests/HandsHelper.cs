@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using PokerHandsComparer.Models;
 
 namespace PokerHandsComparer.UnitTests
 {
     static class HandsHelper
     {
-
         public static readonly Hand HighCardKing =
             new Hand(new List<Card>
             {

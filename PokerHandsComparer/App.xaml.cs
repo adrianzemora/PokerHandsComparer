@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace PokerHandsComparer
 {
@@ -12,5 +9,10 @@ namespace PokerHandsComparer
     /// </summary>
     public partial class App : Application
     {
+        private void HandleException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(string.Format("Error occurred: {0}{1}", Environment.NewLine, e.Exception), "ERROR",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }

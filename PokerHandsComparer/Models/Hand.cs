@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerHandsComparer
+namespace PokerHandsComparer.Models
 {
     public class Hand
     {
         private readonly CategoryRank categoryRank;
-        private List<Card> Cards { get; set; }
-        private List<Rank> Matches { get; set; }
+        private List<Rank> MatchedRanks { get; set; }
         private List<Rank> Kickers { get; set; }
+        public List<Card> Cards { get; private set; }
 
         public Hand(ICollection<Card> cards)
         {
@@ -19,7 +19,7 @@ namespace PokerHandsComparer
             }
 
             Cards = cards.OrderByDescending(card => card.Rank).ToList();
-            Matches = new List<Rank>();
+            MatchedRanks = new List<Rank>();
             Kickers = new List<Rank>();
             categoryRank = GetRank();
         }
@@ -38,21 +38,21 @@ namespace PokerHandsComparer
                 return winner;
             }
 
-            winner = GetWinnerByMatches(otherHand.Matches);
+            winner = GetWinnerByMatchedRanks(otherHand.MatchedRanks);
 
             return winner == Winner.Tie ? GetWinnerByKickers(otherHand.Kickers) : winner;
         }
 
-        private Winner GetWinnerByMatches(IList<Rank> otherHandMatches)
+        private Winner GetWinnerByMatchedRanks(IList<Rank> otherHandMatches)
         {
-            for (int i = 0; i < Matches.Count; i++)
+            for (int i = 0; i < MatchedRanks.Count; i++)
             {
-                if (Matches[i] == otherHandMatches[i])
+                if (MatchedRanks[i] == otherHandMatches[i])
                 {
                     continue;
                 }
 
-                return Matches[i] > otherHandMatches[i] ? Winner.FirstHand : Winner.SecondHand;
+                return MatchedRanks[i] > otherHandMatches[i] ? Winner.Hand1 : Winner.Hand2;
             }
 
             return Winner.Tie;
@@ -67,7 +67,7 @@ namespace PokerHandsComparer
                     continue;
                 }
 
-                return Kickers[i] > otherHandKickers[i] ? Winner.FirstHand : Winner.SecondHand;
+                return Kickers[i] > otherHandKickers[i] ? Winner.Hand1 : Winner.Hand2;
             }
 
             return Winner.Tie;
@@ -80,7 +80,7 @@ namespace PokerHandsComparer
                 return Winner.Tie;
             }
 
-            return categoryRank < otherHandRank ? Winner.SecondHand : Winner.FirstHand;
+            return categoryRank < otherHandRank ? Winner.Hand2 : Winner.Hand1;
         }
 
         private CategoryRank GetRank()
@@ -109,7 +109,7 @@ namespace PokerHandsComparer
             if (IsPair())
                 return CategoryRank.Pair;
 
-            Matches = Cards.Select(card => card.Rank).ToList();
+            MatchedRanks = Cards.Select(card => card.Rank).ToList();
             return CategoryRank.HighCard;
         }
 
@@ -121,7 +121,7 @@ namespace PokerHandsComparer
         private bool IsFourOfAKind()
         {
             var fourOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(g => g.Skip(3).Any()).ToList();
-            Matches = GetMatches(fourOfAKindGroups);
+            MatchedRanks = GetMatchedRanks(fourOfAKindGroups);
             Kickers = GetKickers();
             return fourOfAKindGroups.Count == 1;
         }
@@ -140,16 +140,16 @@ namespace PokerHandsComparer
                     .Where(group => group.Skip(1).Any() && group.Key != threeOfAKindGroups.First().Key)
                     .ToList();
 
-            Matches.Clear();
-            Matches.AddRange(GetMatches(threeOfAKindGroups));
-            Matches.AddRange(GetMatches(twoOfAKindGroups));
+            MatchedRanks.Clear();
+            MatchedRanks.AddRange(GetMatchedRanks(threeOfAKindGroups));
+            MatchedRanks.AddRange(GetMatchedRanks(twoOfAKindGroups));
 
             return threeOfAKindGroups.Count == 1 && twoOfAKindGroups.Count == 1;
         }
 
         private bool IsFlush()
         {
-            Matches = Cards.Select(card => card.Rank).ToList();
+            MatchedRanks = Cards.Select(card => card.Rank).ToList();
             return Cards.All(card => card.Suit == Cards.First().Suit);
         }
 
@@ -162,13 +162,13 @@ namespace PokerHandsComparer
 
             if (isStraightToFive)
             {
-                Matches.Clear();
-                Matches.AddRange(Cards.Where(card => card.Rank != Rank.Ace).Select(card => card.Rank));
-                Matches.Add(Rank.Ace);
+                MatchedRanks.Clear();
+                MatchedRanks.AddRange(Cards.Where(card => card.Rank != Rank.Ace).Select(card => card.Rank));
+                MatchedRanks.Add(Rank.Ace);
             }
             else
             {
-                Matches = Cards.Select(card => card.Rank).ToList();
+                MatchedRanks = Cards.Select(card => card.Rank).ToList();
             }
 
             return !Cards.Select((card, index) => card.Rank + index).Distinct().Skip(1).Any() || isStraightToFive;
@@ -177,7 +177,7 @@ namespace PokerHandsComparer
         private bool IsThreeOfAKind()
         {
             var threeOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(group => group.Skip(2).Any()).ToList();
-            Matches = GetMatches(threeOfAKindGroups);
+            MatchedRanks = GetMatchedRanks(threeOfAKindGroups);
             Kickers = GetKickers();
             return threeOfAKindGroups.Count == 1;
         }
@@ -185,7 +185,7 @@ namespace PokerHandsComparer
         private bool IsTwoPairs()
         {
             var twoOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(group => group.Skip(1).Any()).ToList();
-            Matches = GetMatches(twoOfAKindGroups);
+            MatchedRanks = GetMatchedRanks(twoOfAKindGroups);
             Kickers = GetKickers();
             return twoOfAKindGroups.Count == 2;
         }
@@ -193,19 +193,19 @@ namespace PokerHandsComparer
         private bool IsPair()
         {
             var twoOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(group => group.Skip(1).Any()).ToList();
-            Matches = GetMatches(twoOfAKindGroups);
+            MatchedRanks = GetMatchedRanks(twoOfAKindGroups);
             Kickers = GetKickers();
             return twoOfAKindGroups.Count == 1;
         }
 
-        private static List<Rank> GetMatches(IEnumerable<IGrouping<Rank, Card>> groups)
+        private static List<Rank> GetMatchedRanks(IEnumerable<IGrouping<Rank, Card>> groups)
         {
-            return groups.Select(group => group.Key).ToList();
+            return groups.SelectMany(group => group).Select(card => card.Rank).ToList();
         }
 
         private List<Rank> GetKickers()
         {
-            return Cards.Where(card => !Matches.Contains(card.Rank)).Select(card => card.Rank).ToList();
+            return Cards.Where(card => !MatchedRanks.Contains(card.Rank)).Select(card => card.Rank).ToList();
         }
     }
 }

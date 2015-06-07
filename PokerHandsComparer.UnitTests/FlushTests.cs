@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using PokerHandsComparer.Models;
 
 namespace PokerHandsComparer.UnitTests
 {
@@ -16,18 +17,18 @@ namespace PokerHandsComparer.UnitTests
             get
             {
                 yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FlushToTen).Returns(Winner.Tie);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.HighCardQueen).Returns(Winner.FirstHand);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.PairOfTensKingHigh).Returns(Winner.FirstHand);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.PairsOfAcesAndFoursAndKingHigh).Returns(Winner.FirstHand);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.TripleKings).Returns(Winner.FirstHand);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.StraightToEight).Returns(Winner.FirstHand);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.HighCardQueen).Returns(Winner.Hand1);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.PairOfTensKingHigh).Returns(Winner.Hand1);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.PairsOfAcesAndFoursAndKingHigh).Returns(Winner.Hand1);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.TripleKings).Returns(Winner.Hand1);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.StraightToEight).Returns(Winner.Hand1);
 
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FlushToKing).Returns(Winner.SecondHand);
-                yield return new TestCaseData(HandsHelper.FlushToKing, HandsHelper.FlushToTen).Returns(Winner.FirstHand);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FlushToKing).Returns(Winner.Hand2);
+                yield return new TestCaseData(HandsHelper.FlushToKing, HandsHelper.FlushToTen).Returns(Winner.Hand1);
 
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FullFivesOverTens).Returns(Winner.SecondHand);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FourOfSevens).Returns(Winner.SecondHand);
-                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.StraightFlushToEight).Returns(Winner.SecondHand);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FullFivesOverTens).Returns(Winner.Hand2);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.FourOfSevens).Returns(Winner.Hand2);
+                yield return new TestCaseData(HandsHelper.FlushToTen, HandsHelper.StraightFlushToEight).Returns(Winner.Hand2);
             }
         }
     }

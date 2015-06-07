@@ -1,5 +1,5 @@
 ﻿
-namespace PokerHandsComparer
+namespace PokerHandsComparer.Models
 {
     public enum Rank
     {
