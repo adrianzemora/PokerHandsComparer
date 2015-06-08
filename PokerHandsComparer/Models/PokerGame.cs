@@ -12,8 +12,8 @@ namespace PokerHandsComparer.Models
             var deck = new Deck();
             deck.Shuffle();
 
-            FirstHand = GetHand(deck);
-            SecondHand = GetHand(deck);
+            FirstHand = GetFiveCardsHand(deck);
+            SecondHand = GetFiveCardsHand(deck);
         }
 
         public Winner GetWinner()
@@ -21,7 +21,7 @@ namespace PokerHandsComparer.Models
             return FirstHand.CompareWith(SecondHand);
         }
 
-        private static Hand GetHand(Deck deck)
+        private static Hand GetFiveCardsHand(Deck deck)
         {
             return new Hand(new List<Card>
             {

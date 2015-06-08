@@ -155,15 +155,13 @@ namespace PokerHandsComparer.Models
 
         private bool IsStraight()
         {
-            bool isStraightToFive =
-                Cards.Exists(card => card.Rank == Rank.Ace) && Cards.Exists(card => card.Rank == Rank.Two) &&
-                Cards.Exists(card => card.Rank == Rank.Three) && Cards.Exists(card => card.Rank == Rank.Four) &&
-                Cards.Exists(card => card.Rank == Rank.Five);
+            var straightToFive = new List<Rank> { Rank.Ace, Rank.Two, Rank.Three, Rank.Four, Rank.Five };
+            bool isStraightToFive = Cards.Select(card => card.Rank).Intersect(straightToFive).Count() == Cards.Count;
 
             if (isStraightToFive)
             {
                 MatchedRanks.Clear();
-                MatchedRanks.AddRange(Cards.Where(card => card.Rank != Rank.Ace).Select(card => card.Rank));
+                MatchedRanks.AddRange(straightToFive.Where(rank => rank != Rank.Ace));
                 MatchedRanks.Add(Rank.Ace);
             }
             else
@@ -171,7 +169,12 @@ namespace PokerHandsComparer.Models
                 MatchedRanks = Cards.Select(card => card.Rank).ToList();
             }
 
-            return !Cards.Select((card, index) => card.Rank + index).Distinct().Skip(1).Any() || isStraightToFive;
+            return AreCardsRanksConsecutive() || isStraightToFive;
+        }
+
+        private bool AreCardsRanksConsecutive()
+        {
+            return !Cards.Select((card, index) => card.Rank + index).Distinct().Skip(1).Any();
         }
 
         private bool IsThreeOfAKind()
@@ -196,6 +199,13 @@ namespace PokerHandsComparer.Models
             MatchedRanks = GetMatchedRanks(twoOfAKindGroups);
             Kickers = GetKickers();
             return twoOfAKindGroups.Count == 1;
+        }
+
+        private bool IsExpectedNumberOfGroups(List<IGrouping<Rank, Card>> groups, int numberOfGroups)
+        {
+            MatchedRanks = GetMatchedRanks(groups);
+            Kickers = GetKickers();
+            return groups.Count == numberOfGroups;
         }
 
         private static List<Rank> GetMatchedRanks(IEnumerable<IGrouping<Rank, Card>> groups)
