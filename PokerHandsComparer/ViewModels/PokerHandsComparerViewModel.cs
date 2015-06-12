@@ -1,21 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using PokerHandsComparer.Models;
 
 namespace PokerHandsComparer.ViewModels
 {
-    public class PokerHandsComparerViewModel
+    public class PokerHandsComparerViewModel : NotifyPropertyChanged
     {
+        public ICommand StartGameCommand { get; private set; }
         public HandViewModel FirstHandViewModel { get; private set; }
         public HandViewModel SecondHandViewModel { get; private set; }
-        public WinnerViewModel WinnerViewModel { get; set; }
+        public WinnerViewModel WinnerViewModel { get; private set; }
 
         public PokerHandsComparerViewModel()
+        {
+            StartGameCommand = new StartGameCommand(StartGame);
+            StartGame();
+        }
+
+        private void StartGame()
         {
             var pokerGame = new PokerGame();
             WinnerViewModel = GetWinnerViewModel(pokerGame);
             FirstHandViewModel = GetHandViewModel(pokerGame.FirstHand);
             SecondHandViewModel = GetHandViewModel(pokerGame.SecondHand);
+            OnPropertyChanged(string.Empty);
         }
 
         private static WinnerViewModel GetWinnerViewModel(PokerGame pokerGame)

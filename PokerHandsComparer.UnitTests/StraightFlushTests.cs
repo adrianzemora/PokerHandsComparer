@@ -7,7 +7,7 @@ namespace PokerHandsComparer.UnitTests
     class StraightFlushTests
     {
         [Test, TestCaseSource("StraightFlushTestsWithResults")]
-        public object CompareWith_ReturnsTheCorrectWinner(Hand first, Hand second)
+        public Winner CompareWith_ReturnsTheCorrectWinner(Hand first, Hand second)
         {
             return first.CompareWith(second);
         }

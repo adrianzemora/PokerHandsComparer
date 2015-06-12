@@ -7,7 +7,7 @@ namespace PokerHandsComparer.UnitTests
     class HighCardTests
     {
         [Test, TestCaseSource("HighCardTestsWithResults")]
-        public object CompareWith_ReturnsTheCorrectWinner(Hand first, Hand second)
+        public Winner CompareWith_ReturnsTheCorrectWinner(Hand first, Hand second)
         {
             return first.CompareWith(second);
         }

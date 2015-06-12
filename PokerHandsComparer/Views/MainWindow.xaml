@@ -9,7 +9,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <WrapPanel Orientation="Horizontal" Margin="0,0,0,0" Height="160" VerticalAlignment="Top">
+        <WrapPanel Orientation="Horizontal" Height="160" VerticalAlignment="Top">
             <Label Content="Hand 1:" FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center"/>
             <StackPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding FirstHandViewModel.Cards}">
@@ -31,7 +31,7 @@
             </StackPanel>
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Margin="0,0,0,0" Height="160" VerticalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" Height="160" VerticalAlignment="Center">
             <Label Content="Hand 2:" FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center"/>
             <StackPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding SecondHandViewModel.Cards}">
@@ -53,18 +53,32 @@
             </StackPanel>
         </WrapPanel>
 
-        <StackPanel Margin="0,0,0,0" Height="160" VerticalAlignment="Bottom">
+        <StackPanel Height="160" VerticalAlignment="Bottom">
             <WrapPanel>
-            <Label Content="Hand 1 -> " FontSize="20" FontWeight="Bold"/>
-            <Label Content="{Binding WinnerViewModel.FirstHandRank}" FontSize="20" FontWeight="Bold"/>
+                <Label Content="Hand 1 -> " FontSize="20" FontWeight="Bold"/>
+                <Label Content="{Binding WinnerViewModel.FirstHandRank}" FontSize="20" FontWeight="Bold"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Content="Hand 2 -> " FontSize="20" FontWeight="Bold"/>
-            <Label Content="{Binding WinnerViewModel.SecondHandRank}" FontSize="20" FontWeight="Bold"/>
+                <Label Content="{Binding WinnerViewModel.SecondHandRank}" FontSize="20" FontWeight="Bold"/>
             </WrapPanel>
             <WrapPanel>
-            <Label Content="Winner -> " FontSize="20" FontWeight="Bold"/>
-            <Label Content="{Binding WinnerViewModel.Winner}" FontSize="20" FontWeight="Bold" Foreground="Green"/>
+                <Label Content="Winner -> " FontSize="20" FontWeight="Bold"/>
+                <Label Content="{Binding Path=WinnerViewModel.Winner, NotifyOnTargetUpdated=True}" FontSize="20" FontWeight="Bold" Foreground="Red">
+                    <Label.Triggers>
+                        <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Opacity)" From="1" To="0" AutoReverse="True" 
+                                                     BeginTime="0:0:0" Duration="0:0:.500" RepeatBehavior="2x"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Label.Triggers>
+                </Label>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button Content="Restart" FontSize="20" Command="{Binding StartGameCommand}"/>
             </WrapPanel>
         </StackPanel>
     </Grid>

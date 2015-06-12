@@ -7,7 +7,7 @@ namespace PokerHandsComparer.UnitTests
     class DeckTests
     {
         [Test]
-        void Shuffle_MixesTheCards()
+        public void Shuffle_MixesTheCards()
         {
             var deck = new Deck();
             List<Card> beforeShuffle = deck.GetCards();

@@ -155,13 +155,13 @@ namespace PokerHandsComparer.Models
 
         private bool IsStraight()
         {
-            var straightToFive = new List<Rank> { Rank.Ace, Rank.Two, Rank.Three, Rank.Four, Rank.Five };
-            bool isStraightToFive = Cards.Select(card => card.Rank).Intersect(straightToFive).Count() == Cards.Count;
+            var fiveHighStraight = new List<Rank> { Rank.Ace, Rank.Two, Rank.Three, Rank.Four, Rank.Five };
+            bool isFiveHighStraight = Cards.Select(card => card.Rank).Intersect(fiveHighStraight).Count() == Cards.Count;
 
-            if (isStraightToFive)
+            if (isFiveHighStraight)
             {
                 MatchedRanks.Clear();
-                MatchedRanks.AddRange(straightToFive.Where(rank => rank != Rank.Ace));
+                MatchedRanks.AddRange(fiveHighStraight.Where(rank => rank != Rank.Ace));
                 MatchedRanks.Add(Rank.Ace);
             }
             else
@@ -169,7 +169,7 @@ namespace PokerHandsComparer.Models
                 MatchedRanks = Cards.Select(card => card.Rank).ToList();
             }
 
-            return AreCardsRanksConsecutive() || isStraightToFive;
+            return AreCardsRanksConsecutive() || isFiveHighStraight;
         }
 
         private bool AreCardsRanksConsecutive()
@@ -199,13 +199,6 @@ namespace PokerHandsComparer.Models
             MatchedRanks = GetMatchedRanks(twoOfAKindGroups);
             Kickers = GetKickers();
             return twoOfAKindGroups.Count == 1;
-        }
-
-        private bool IsExpectedNumberOfGroups(List<IGrouping<Rank, Card>> groups, int numberOfGroups)
-        {
-            MatchedRanks = GetMatchedRanks(groups);
-            Kickers = GetKickers();
-            return groups.Count == numberOfGroups;
         }
 
         private static List<Rank> GetMatchedRanks(IEnumerable<IGrouping<Rank, Card>> groups)
