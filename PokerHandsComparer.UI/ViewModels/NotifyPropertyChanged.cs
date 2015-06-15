@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace PokerHandsComparer.ViewModels
+namespace PokerHandsComparer.UI.ViewModels
 {
     public class NotifyPropertyChanged : INotifyPropertyChanged
     {

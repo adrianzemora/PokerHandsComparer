@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using PokerHandsComparer.Models;
 
 namespace PokerHandsComparer.UnitTests
 {

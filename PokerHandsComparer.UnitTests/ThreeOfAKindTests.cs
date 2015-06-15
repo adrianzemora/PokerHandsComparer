@@ -1,34 +1,49 @@
 ﻿using System.Collections;
 using NUnit.Framework;
-using PokerHandsComparer.Models;
 
 namespace PokerHandsComparer.UnitTests
 {
     class ThreeOfAKindTests
     {
-        [Test, TestCaseSource("ThreeOfAKindTestsWithResults")]
-        public Winner CompareWith_ReturnsTheCorrectWinner(Hand first, Hand second)
+        [Test, TestCaseSource("FirstHandWinnerThreeOfAKindTests")]
+        public void CompareWith_ReturnsFirstHandAsWinner_WhenFirstHandIsBetterThanSecondOne(Hand first, Hand second)
         {
-            return first.CompareWith(second);
+            Assert.AreEqual(Winner.Hand1, first.CompareWith(second));
         }
 
-        private static IEnumerable ThreeOfAKindTestsWithResults
+        [Test]
+        public void CompareWith_ReturnsTie_WhenBothHandsHaveTheSameCardRanks()
+        {
+            Assert.AreEqual(Winner.Tie, HandsHelper.TripleJacks.CompareWith(HandsHelper.TripleJacks));
+        }
+
+        [Test, TestCaseSource("SecondHandWinnerThreeOfAKindTests")]
+        public void CompareWith_ReturnsSecondHandAsWinner_WhenFirstHandIsWorseThanSecondOne(Hand first, Hand second)
+        {
+            Assert.AreEqual(Winner.Hand2, first.CompareWith(second));
+        }
+
+        private static IEnumerable FirstHandWinnerThreeOfAKindTests
         {
             get
             {
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.TripleJacks).Returns(Winner.Tie);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.HighCardQueen).Returns(Winner.Hand1);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.PairOfTensKingHigh).Returns(Winner.Hand1);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.PairsOfAcesAndFoursAndKingHigh).Returns(Winner.Hand1);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.HighCardQueen);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.PairOfTensKingHigh);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.PairsOfAcesAndFoursAndKingHigh);
+                yield return new TestCaseData(HandsHelper.TripleKings, HandsHelper.TripleJacks);
+            }
+        }
 
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.TripleKings).Returns(Winner.Hand2);
-                yield return new TestCaseData(HandsHelper.TripleKings, HandsHelper.TripleJacks).Returns(Winner.Hand1);
-
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.StraightToEight).Returns(Winner.Hand2);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.FlushToTen).Returns(Winner.Hand2);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.FullFivesOverTens).Returns(Winner.Hand2);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.FourOfSevens).Returns(Winner.Hand2);
-                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.StraightFlushToEight).Returns(Winner.Hand2);
+        private static IEnumerable SecondHandWinnerThreeOfAKindTests
+        {
+            get
+            {
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.TripleKings);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.StraightToEight);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.FlushToTen);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.FullFivesOverTens);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.FourOfSevens);
+                yield return new TestCaseData(HandsHelper.TripleJacks, HandsHelper.StraightFlushToEight);
             }
         }
     }

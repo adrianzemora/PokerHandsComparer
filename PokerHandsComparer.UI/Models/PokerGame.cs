@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PokerHandsComparer.Models
+namespace PokerHandsComparer.UI.Models
 {
     class PokerGame
     {

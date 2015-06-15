@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace PokerHandsComparer.Models
+namespace PokerHandsComparer.UI.Models
 {
     class StartGameCommand : ICommand
     {

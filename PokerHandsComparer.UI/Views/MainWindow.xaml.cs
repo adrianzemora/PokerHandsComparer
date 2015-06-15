@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using PokerHandsComparer.ViewModels;
+using PokerHandsComparer.UI.ViewModels;
 
-namespace PokerHandsComparer.Views
+namespace PokerHandsComparer.UI.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

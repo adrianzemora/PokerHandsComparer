@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 
-namespace PokerHandsComparer
+namespace PokerHandsComparer.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml

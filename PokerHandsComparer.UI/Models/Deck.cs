@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerHandsComparer.Models
+namespace PokerHandsComparer.UI.Models
 {
     class Deck
     {

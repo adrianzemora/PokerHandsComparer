@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandsComparer", "PokerHandsComparer.csproj", "{B704BC8F-1A46-45F4-B600-D195AA89986B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandsComparer.UI", "PokerHandsComparer.UI.csproj", "{B704BC8F-1A46-45F4-B600-D195AA89986B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandsComparer.UnitTests", "..\PokerHandsComparer.UnitTests\PokerHandsComparer.UnitTests.csproj", "{8E7987FD-E83F-48F5-8941-57A69EDAB4FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandsComparer", "..\PokerHandsComparer\PokerHandsComparer.csproj", "{940E801E-6C95-4E1E-BE42-5A6A1DC14D83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8E7987FD-E83F-48F5-8941-57A69EDAB4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E7987FD-E83F-48F5-8941-57A69EDAB4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E7987FD-E83F-48F5-8941-57A69EDAB4FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940E801E-6C95-4E1E-BE42-5A6A1DC14D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940E801E-6C95-4E1E-BE42-5A6A1DC14D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940E801E-6C95-4E1E-BE42-5A6A1DC14D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940E801E-6C95-4E1E-BE42-5A6A1DC14D83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

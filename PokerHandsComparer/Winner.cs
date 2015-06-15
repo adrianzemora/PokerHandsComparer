@@ -1,4 +1,4 @@
-﻿namespace PokerHandsComparer.Models
+﻿namespace PokerHandsComparer
 {
     public enum Winner
     {

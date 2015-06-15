@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerHandsComparer.Models
+namespace PokerHandsComparer
 {
     public class Hand
     {
@@ -120,7 +120,7 @@ namespace PokerHandsComparer.Models
 
         private bool IsFourOfAKind()
         {
-            var fourOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(g => g.Skip(3).Any()).ToList();
+            var fourOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(group => group.Skip(3).Any()).ToList();
             MatchedRanks = GetMatchedRanks(fourOfAKindGroups);
             Kickers = GetKickers();
             return fourOfAKindGroups.Count == 1;
@@ -196,6 +196,7 @@ namespace PokerHandsComparer.Models
         private bool IsPair()
         {
             var twoOfAKindGroups = Cards.GroupBy(card => card.Rank).Where(group => group.Skip(1).Any()).ToList();
+
             MatchedRanks = GetMatchedRanks(twoOfAKindGroups);
             Kickers = GetKickers();
             return twoOfAKindGroups.Count == 1;

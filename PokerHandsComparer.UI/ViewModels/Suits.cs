@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
-using PokerHandsComparer.Models;
-using PokerHandsComparer.Properties;
+using PokerHandsComparer.UI.Properties;
 
-namespace PokerHandsComparer.ViewModels
+namespace PokerHandsComparer.UI.ViewModels
 {
     static class Suits
     {

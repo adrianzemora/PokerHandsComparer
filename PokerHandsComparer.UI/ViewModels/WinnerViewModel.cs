@@ -1,6 +1,4 @@
-﻿using PokerHandsComparer.Models;
-
-namespace PokerHandsComparer.ViewModels
+﻿namespace PokerHandsComparer.UI.ViewModels
 {
     public class WinnerViewModel
     {

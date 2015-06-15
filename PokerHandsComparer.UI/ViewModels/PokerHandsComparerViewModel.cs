@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using PokerHandsComparer.Models;
+using PokerHandsComparer.UI.Models;
 
-namespace PokerHandsComparer.ViewModels
+namespace PokerHandsComparer.UI.ViewModels
 {
     public class PokerHandsComparerViewModel : NotifyPropertyChanged
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using PokerHandsComparer.Models;
+using PokerHandsComparer.UI.Models;
 
 namespace PokerHandsComparer.UnitTests
 {

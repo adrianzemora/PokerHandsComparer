@@ -35,24 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.core">
-      <HintPath>..\PokerHandsComparer\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\PokerHandsComparer\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>NUnit\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\PokerHandsComparer\packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter">
-      <HintPath>..\PokerHandsComparer\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -87,13 +71,17 @@
     <Compile Include="TwoPairsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PokerHandsComparer\PokerHandsComparer.csproj">
-      <Project>{b704bc8f-1a46-45f4-b600-d195aa89986b}</Project>
-      <Name>PokerHandsComparer</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\PokerHandsComparer.UI\PokerHandsComparer.UI.csproj">
+      <Project>{b704bc8f-1a46-45f4-b600-d195aa89986b}</Project>
+      <Name>PokerHandsComparer.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PokerHandsComparer\PokerHandsComparer.csproj">
+      <Project>{940e801e-6c95-4e1e-be42-5a6a1dc14d83}</Project>
+      <Name>PokerHandsComparer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
